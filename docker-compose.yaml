@@ -1,0 +1,31 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: secure_connection
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  go_service:
+    build: ./balance_from_csv_processor
+    container_name: balance_from_csv_processor
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_HOST: mongo
+      MONGO_USER: mongo_user
+      MONGO_PASSWORD: secure_connection
+      USER_EMAIL: replace_your_gmail
+      APPLICATION_KEY: replace_your_application_key
+    volumes:
+      - ./data:/app/data 
+      
+volumes:
+  mongo_data:
