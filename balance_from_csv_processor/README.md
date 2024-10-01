@@ -1,5 +1,5 @@
 # Project balance processor from CSV
-The proposal of this project is,  of this project is, by means of a mounted file into the project, 
+The proposal of this project is, by means of a mounted file into the project, 
 summarize the transactions into the csv file, generating a mail with the transaction summary, 
 counting transactions by month and attach the file. Additional saving transactions into mongo database 
 in order to will be exploded in the future. 
